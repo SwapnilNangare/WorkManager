@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // simpleWork()
+        simpleWork()
 
         myWorkManager()
     }
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         ).setConstraints(constrains).build()
 
         WorkManager.getInstance(this)
-            .enqueue()
+            .enqueueUniquePeriodicWork("my_id", ExistingPeriodicWorkPolicy.KEEP, myRequest)
     }
 
     private fun simpleWork() {
@@ -39,5 +39,6 @@ class MainActivity : AppCompatActivity() {
 
         WorkManager.getInstance(this)
             .enqueue(mRequest)
+
     }
 }
