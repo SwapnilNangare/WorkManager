@@ -10,12 +10,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        simpleWork()
-
-        myWorkManager()
+        oneTimeWorkRequest()
+        periodicWorkRequest()
     }
 
-    private fun myWorkManager() {
+    private fun periodicWorkRequest() {
         val constrains = Constraints.Builder()
             .setRequiresCharging(false)
             .setRequiredNetworkType(NetworkType.NOT_REQUIRED)
@@ -31,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             .enqueueUniquePeriodicWork("my_id", ExistingPeriodicWorkPolicy.KEEP, myRequest)
     }
 
-    private fun simpleWork() {
+    private fun oneTimeWorkRequest() {
 
         //we create one time Request
         val mRequest: WorkRequest = OneTimeWorkRequestBuilder<MyWorker>()
